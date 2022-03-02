@@ -31,14 +31,35 @@ const ResponsiveAppBar = () => {
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-        let path = `/home`;
-        navigate(path);
     };
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
 
+    const handleCloseNavMenuContactUs = () => {
+        setAnchorElNav(null);
+        let path = `/home/contactus`;
+        navigate(path);
+    };
+
+    const handleCloseNavMenuAboutUs = () => {
+        setAnchorElNav(null);
+        let path = `/home/about-us`;
+        navigate(path);
+    };
+
+    const handleCloseNavMenuMyInfo = () => {
+        setAnchorElNav(null);
+        let path = `/home/user-info`;
+        navigate(path);
+    };
+
+    const handleCloseNavMenuServices = () => {
+        setAnchorElNav(null);
+        let path = `/home/services`;
+        navigate(path);
+    };
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -83,7 +104,7 @@ const ResponsiveAppBar = () => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Typography textAlign="center">heyeyeyeyy</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -99,28 +120,28 @@ const ResponsiveAppBar = () => {
                     <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                         <Button
                             key="Contact Us"
-                            onClick={handleCloseNavMenu}
+                            onClick={handleCloseNavMenuContactUs}
                             sx={{ my: 2, color: "white", display: "block" }}>
                             Contact Us
                         </Button>
 
                         <Button
                             key="About Us"
-                            onClick={handleCloseNavMenu}
+                            onClick={handleCloseNavMenuAboutUs}
                             sx={{ my: 2, color: "white", display: "block" }}>
                             About Us
                         </Button>
 
                         <Button
                             key="Services"
-                            onClick={handleCloseNavMenu}
+                            onClick={handleCloseNavMenuServices}
                             sx={{ my: 2, color: "white", display: "block" }}>
                             Services
                         </Button>
 
                         <Button
                             key="My Info"
-                            onClick={handleCloseNavMenu}
+                            onClick={handleCloseNavMenuMyInfo}
                             sx={{ my: 2, color: "white", display: "block" }}>
                             My Info
                         </Button>
