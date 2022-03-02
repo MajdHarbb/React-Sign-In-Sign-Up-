@@ -7,9 +7,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Route
+      <Routes>
+            <Route path='/' element={<LoginPage/>}></Route>
+            <Route path='/signup' element={<SignupPage/>}></Route>
+
+            
+        </Routes>
       </BrowserRouter>
-        <LoginPage/>
     </div>
   );
 }
