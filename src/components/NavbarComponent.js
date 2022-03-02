@@ -112,10 +112,17 @@ const ResponsiveAppBar = () => {
                         </Button>
 
                         <Button
-                            key="About Us"
+                            key="Services"
                             onClick={handleCloseNavMenu}
                             sx={{ my: 2, color: "white", display: "block" }}>
-                            About Us
+                            Services
+                        </Button>
+
+                        <Button
+                            key="My Info"
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: "white", display: "block" }}>
+                            My Info
                         </Button>
 
                     </Box>
