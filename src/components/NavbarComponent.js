@@ -7,15 +7,11 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -35,6 +31,12 @@ const ResponsiveAppBar = () => {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const handleCloseNavMenuHome = () => {
+        setAnchorElNav(null);
+        let path = `/home`;
+        navigate(path);
     };
 
     const handleCloseNavMenuContactUs = () => {
@@ -102,11 +104,22 @@ const ResponsiveAppBar = () => {
                                 display: { xs: "block", md: "none" },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">heyeyeyeyy</Typography>
-                                </MenuItem>
-                            ))}
+                            
+                            <MenuItem key="Home" onClick={handleCloseNavMenuHome}>
+                                <Typography textAlign="center">Home</Typography>
+                            </MenuItem>
+                            <MenuItem key="Contact Us" onClick={handleCloseNavMenuContactUs}>
+                                <Typography textAlign="center">Contact Us</Typography>
+                            </MenuItem>
+                            <MenuItem key="About Us" onClick={handleCloseNavMenuAboutUs}>
+                                <Typography textAlign="center">About Us</Typography>
+                            </MenuItem>
+                            <MenuItem key="Services" onClick={handleCloseNavMenuServices}>
+                                <Typography textAlign="center">Services</Typography>
+                            </MenuItem>
+                            <MenuItem key="My Info" onClick={handleCloseNavMenuMyInfo}>
+                                <Typography textAlign="center">My Info</Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <Typography
@@ -118,6 +131,14 @@ const ResponsiveAppBar = () => {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                        
+                    <Button
+                            key="Home"
+                            onClick={handleCloseNavMenuHome}
+                            sx={{ my: 2, color: "white", display: "block" }}>
+                            Home
+                        </Button>
+
                         <Button
                             key="Contact Us"
                             onClick={handleCloseNavMenuContactUs}
