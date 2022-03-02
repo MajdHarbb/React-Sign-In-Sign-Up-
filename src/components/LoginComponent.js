@@ -34,10 +34,15 @@ export default function LoginComponent() {
                 })
                 
             });
-            
+            const content = await response.json();
+            console.log(content.access_token);
+            localStorage.setItem("access_token", content.access_token);
+            setRedirect(true);
         }
     
-        
+        if(redirect){
+            return <Navigate to="/home" />
+        }
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
