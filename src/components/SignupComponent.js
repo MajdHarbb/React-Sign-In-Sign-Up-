@@ -23,9 +23,13 @@ export default function SignupComponent() {
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordRepeat] = useState("");
   const [redirect, setRedirect] = useState(false);
-  
+  var emailRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  var passRegex = /^[a-zA-Z0-9]{6,}$/;
   const submit = async (e) => {
-    e.preventDefault();
+    if(email.match(emailRegex) && password.match(passRegex) && first_name!="" 
+    && first_name!="" && password===password_confirmation){
+      e.preventDefault();
     //const response =
     await fetch("http://127.0.0.1:8000/api/auth/register", {
       method: "POST",
@@ -41,6 +45,10 @@ export default function SignupComponent() {
     // const content = await response.json();
     // console.log(content);
     setRedirect(true);
+    }else{
+      document.getElementById("invalidinput").style.display="block";
+    }
+    
   };
   if (redirect) {
     return <Navigate to="/" />;
@@ -64,6 +72,12 @@ export default function SignupComponent() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+
+          <Typography component="h3" id="invalidinput" variant="h5">
+            Invalid Input
+          </Typography>
+
+
           <Box component="form" noValidate onSubmit={submit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>

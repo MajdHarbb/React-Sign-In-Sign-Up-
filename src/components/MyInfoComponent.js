@@ -17,11 +17,6 @@ import { Navigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function MyInfoComponent() {
-
-
-
-
-
   let test;
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
@@ -30,40 +25,36 @@ export default function MyInfoComponent() {
   const [password_confirmation, setPasswordRepeat] = useState("");
   const [user_idd, setuserid] = useState(0);
 
-
-
   const bearer_token = localStorage.getItem("access_token");
   var bearer = "Bearer " + bearer_token;
 
-
   var url = "http://127.0.0.1:8000/api/auth/user-profile";
-  async function getUserInfo ()  {
+  async function getUserInfo() {
     const response = await fetch(url, {
-        method: 'GET',
+      method: "GET",
 
-        headers: {
-            'Authorization': bearer,
-            'Content-Type': 'application/json'
-        }
-    })
-    
+      headers: {
+        Authorization: bearer,
+        "Content-Type": "application/json",
+      },
+    });
+
     let content = await response.json();
-    console.log("asdugjasdjklkasdlkjhasgdjhbkj"+content.id);
-    
+    console.log("asdugjasdjklkasdlkjhasgdjhbkj" + content.id);
+
     setuserid(content.id);
     // setFirstName(content.first_name);
     // setLastName(content.last_name);
-    
-}
+  }
 
-getUserInfo();
-    test = user_idd;
-    let user_id = test;
-    console.log("asdsadasdhjjhhhhhhhhhhhhhhhhhhhhhh"+test);
-    const submit = async (e) => {
+  getUserInfo();
+  test = user_idd;
+  let user_id = test;
+  console.log("asdsadasdhjjhhhhhhhhhhhhhhhhhhhhhh" + test);
+  const submit = async (e) => {
     e.preventDefault();
     //const response =
-    
+
     await fetch("http://127.0.0.1:8000/api/auth/update", {
       method: "POST",
       headers: { Authorization: bearer, "Content-Type": "application/json" },
@@ -97,9 +88,9 @@ getUserInfo();
         password_confirmation,
       }),
     })
-    .then(response => response.json())
-    .then(data => console.log(data));
-  }
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  };
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

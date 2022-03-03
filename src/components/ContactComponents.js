@@ -17,36 +17,32 @@ import { Navigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function ContactComponent() {
-  
-    const [first_name,setId] = useState('');
-    
-    const bearer_token = localStorage.getItem("access_token");
-    console.log(bearer_token)
-    var url = "http://127.0.0.1:8000/api/auth/user-profile";
-    var bearer = 'Bearer ' + bearer_token;
-    async function getUserInfo ()  {
-        const response = await fetch(url, {
-            method: 'GET',
-    
-            headers: {
-                'Authorization': bearer,
-                'Content-Type': 'application/json'
-            }
-        })
-        
-        let content = await response.json();
-        console.log(content);
-        setId(content.id);
-        
-    }
-    
-    getUserInfo();
+  const [first_name, setId] = useState("");
 
+  const bearer_token = localStorage.getItem("access_token");
+  console.log(bearer_token);
+  var url = "http://127.0.0.1:8000/api/auth/user-profile";
+  var bearer = "Bearer " + bearer_token;
+  async function getUserInfo() {
+    const response = await fetch(url, {
+      method: "GET",
 
+      headers: {
+        Authorization: bearer,
+        "Content-Type": "application/json",
+      },
+    });
 
-  const[contact_message,setMessage] = useState("");
-  const[user_id1,setUserId] = useState("");
-  let user_id = parseInt(first_name);;
+    let content = await response.json();
+    console.log(content);
+    setId(content.id);
+  }
+
+  getUserInfo();
+
+  const [contact_message, setMessage] = useState("");
+  const [user_id1, setUserId] = useState("");
+  let user_id = parseInt(first_name);
   const [redirect, setRedirect] = useState(false);
   const submit = async (e) => {
     e.preventDefault();
@@ -63,7 +59,6 @@ export default function ContactComponent() {
     // console.log(content);
     setRedirect(true);
   };
-  
 
   return (
     <ThemeProvider theme={theme}>
@@ -77,15 +72,11 @@ export default function ContactComponent() {
             alignItems: "center",
           }}
         >
-          
           <Typography component="h1" variant="h5">
             Send Us A Message
           </Typography>
           <Box component="form" noValidate onSubmit={submit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              
-            
-              
               <Grid item xs={12}>
                 <TextField
                   required
@@ -97,7 +88,6 @@ export default function ContactComponent() {
                   onChange={(e) => setMessage(e.target.value)}
                 />
               </Grid>
-              
             </Grid>
             <Button
               type="submit"
@@ -107,7 +97,6 @@ export default function ContactComponent() {
             >
               Send Message
             </Button>
-            
           </Box>
         </Box>
       </Container>
