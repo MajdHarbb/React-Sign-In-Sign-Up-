@@ -41,7 +41,7 @@ export default function LoginComponent() {
             localStorage.setItem("access_token", content.access_token);
             setRedirect(true);
         } else{
-            alert("eneter");
+            alert("Invalid Input");
 
         }
 
@@ -93,15 +93,6 @@ export default function LoginComponent() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
 
-                        <TextField className='alertBox'
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Invalid Input"
-                            type="password"
-                            autoComplete="current-password"
-                        />
 
                         <Button
                             type="submit"
