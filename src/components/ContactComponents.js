@@ -17,33 +17,53 @@ import { Navigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function ContactComponent() {
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password_confirmation, setPasswordRepeat] = useState("");
+  
+    const [first_name,setId] = useState('');
+    
+    const bearer_token = localStorage.getItem("access_token");
+    console.log(bearer_token)
+    var url = "http://127.0.0.1:8000/api/auth/user-profile";
+    var bearer = 'Bearer ' + bearer_token;
+    async function getUserInfo ()  {
+        const response = await fetch(url, {
+            method: 'GET',
+    
+            headers: {
+                'Authorization': bearer,
+                'Content-Type': 'application/json'
+            }
+        })
+        
+        let content = await response.json();
+        console.log(content);
+        setId(content.id);
+        
+    }
+    
+    getUserInfo();
+
+
+
+  const[contact_message,setMessage] = useState("");
+  const[user_id1,setUserId] = useState("");
+  let user_id = parseInt(first_name);;
   const [redirect, setRedirect] = useState(false);
   const submit = async (e) => {
     e.preventDefault();
     //const response =
-    await fetch("http://127.0.0.1:8000/api/auth/register", {
+    await fetch("http://127.0.0.1:8000/api/auth/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        first_name,
-        last_name,
-        email,
-        password,
-        password_confirmation,
+        user_id,
+        contact_message,
       }),
     });
     // const content = await response.json();
     // console.log(content);
     setRedirect(true);
   };
-  if (redirect) {
-    return <Navigate to="/" />;
-  }
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,64 +83,21 @@ export default function ContactComponent() {
           </Typography>
           <Box component="form" noValidate onSubmit={submit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </Grid>
+              
+            
+              
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="message"
+                  label="Message Text"
+                  type="text"
+                  id="message"
+                  onChange={(e) => setMessage(e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password_confirmation"
-                  label="Enter Password Again"
-                  type="password"
-                  id="password_confirmation"
-                  autoComplete="new-password"
-                  onChange={(e) => setPasswordRepeat(e.target.value)}
-                />
-              </Grid>
+              
             </Grid>
             <Button
               type="submit"
@@ -128,15 +105,9 @@ export default function ContactComponent() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Send Message
             </Button>
-            <Grid container>
-              <Grid item>
-                <Linkk to="/" variant="body2">
-                  Already have an account? Sign in
-                </Linkk>
-              </Grid>
-            </Grid>
+            
           </Box>
         </Box>
       </Container>
