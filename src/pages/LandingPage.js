@@ -42,9 +42,9 @@ const LandingPage = () => {
     return (
         <div>
             <NavbarComponent/>
-            <SliderComponent/>
-            <Outlet/>
             
+            <Outlet/>
+            {/* <SliderComponent/> */}
         </div>
     );
 };

@@ -10,39 +10,33 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
-
-
+import { useState } from "react";
 
 const ResponsiveAppBar = () => {
-
-    const [first_name,setFirstName] = useState('');
-    const [last_name,setLastName] = useState('');
-    const [email,setEmail] = useState('');
+    const [first_name, setFirstName] = useState("");
+    const [last_name, setLastName] = useState("");
+    const [email, setEmail] = useState("");
     const bearer_token = localStorage.getItem("access_token");
-    console.log(bearer_token)
+    console.log(bearer_token);
     var url = "http://127.0.0.1:8000/api/auth/user-profile";
-    var bearer = 'Bearer ' + bearer_token;
-    async function getUserInfo ()  {
+    var bearer = "Bearer " + bearer_token;
+    async function getUserInfo() {
         const response = await fetch(url, {
-            method: 'GET',
-    
+            method: "GET",
+
             headers: {
-                'Authorization': bearer,
-                'Content-Type': 'application/json'
-            }
-        })
-        
+                Authorization: bearer,
+                "Content-Type": "application/json",
+            },
+        });
+
         let content = await response.json();
         console.log(content);
         setFirstName(content.first_name);
         setLastName(content.last_name);
-        
     }
-    
+
     getUserInfo();
-
-
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -102,7 +96,7 @@ const ResponsiveAppBar = () => {
                         component="div"
                         sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
                     >
-                        LOGO
+                        Hello {first_name}
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -134,7 +128,6 @@ const ResponsiveAppBar = () => {
                                 display: { xs: "block", md: "none" },
                             }}
                         >
-                            
                             <MenuItem key="Home" onClick={handleCloseNavMenuHome}>
                                 <Typography textAlign="center">Home</Typography>
                             </MenuItem>
@@ -158,52 +151,56 @@ const ResponsiveAppBar = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
                     >
-                        LOGO
+                        Hello {first_name}
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                        
-                    <Button
+                        <Button
                             key="Home"
                             onClick={handleCloseNavMenuHome}
-                            sx={{ my: 2, color: "white", display: "block" }}>
+                            sx={{ my: 2, color: "white", display: "block" }}
+                        >
                             Home
                         </Button>
 
                         <Button
                             key="Contact Us"
                             onClick={handleCloseNavMenuContactUs}
-                            sx={{ my: 2, color: "white", display: "block" }}>
+                            sx={{ my: 2, color: "white", display: "block" }}
+                        >
                             Contact Us
                         </Button>
 
                         <Button
                             key="About Us"
                             onClick={handleCloseNavMenuAboutUs}
-                            sx={{ my: 2, color: "white", display: "block" }}>
+                            sx={{ my: 2, color: "white", display: "block" }}
+                        >
                             About Us
                         </Button>
 
                         <Button
                             key="Services"
                             onClick={handleCloseNavMenuServices}
-                            sx={{ my: 2, color: "white", display: "block" }}>
+                            sx={{ my: 2, color: "white", display: "block" }}
+                        >
                             Services
                         </Button>
 
                         <Button
                             key="My Info"
                             onClick={handleCloseNavMenuMyInfo}
-                            sx={{ my: 2, color: "white", display: "block" }}>
+                            sx={{ my: 2, color: "white", display: "block" }}
+                        >
                             My Info
                         </Button>
-
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Button
                             key="Logout"
                             //onClick={handleCloseNavMenuMyInfo}
-                            sx={{ my: 2, color: "white", display: "block" }}>
+                            sx={{ my: 2, color: "white", display: "block" }}
+                        >
                             Logout
                         </Button>
                     </Box>
