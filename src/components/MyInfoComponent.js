@@ -38,11 +38,12 @@ export default function MyInfoComponent() {
         })
         
         let content = await response.json();
-        console.log(content);
         setMyId(content.id);
         setFirstNameO(content.first_name);
         setLastNameO(content.last_name);
         setEmailO(content.email);
+        
+        console.log(myid);
 
         
     }
@@ -68,11 +69,12 @@ export default function MyInfoComponent() {
   const submit = async (e) => {
     e.preventDefault();
     //const response =
+    let us_id = parseInt(myid);
     await fetch("http://127.0.0.1:8000/api/auth/update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        myid,
+        us_id,
         first_name_update,
         last_name_update,
         email_update,
@@ -109,7 +111,6 @@ export default function MyInfoComponent() {
                   name="firstName"
                   required
                   fullWidth
-                  defaultValue={first_name}
 
                   id="firstName"
                   label="First Name"
@@ -123,7 +124,6 @@ export default function MyInfoComponent() {
                   fullWidth
                   id="lastName"
                   label="Last Name"
-                  defaultValue={last_name}
                   name="lastName"
                   autoComplete="family-name"
                   onChange={(e) => setLastName(e.target.value)}
@@ -133,8 +133,8 @@ export default function MyInfoComponent() {
                 <TextField
                   required
                   fullWidth
+                  
                   id="email"
-                  defaultValue={email}
                   label="Email Address"
                   name="email"
                   autoComplete="email"
