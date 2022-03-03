@@ -70,11 +70,11 @@ export default function LoginComponent() {
             Sign in
           </Typography>
 
-          <Typography ClassName="alert-error" id="invalidinput" component="h3" variant="h5">
+          <Typography className="alert-error" id="invalidinput" component="h3" variant="h5">
             Invalid Input
           </Typography>
 
-          <Typography ClassName="alert-error" id="nouser" component="h3" variant="h5">
+          <Typography className="alert-error" id="nouser" component="h3" variant="h5">
             User Does Not Exist
           </Typography>
 

@@ -50,7 +50,6 @@ export default function MyInfoComponent() {
   getUserInfo();
   test = user_idd;
   let user_id = test;
-  console.log("asdsadasdhjjhhhhhhhhhhhhhhhhhhhhhh" + test);
   const submit = async (e) => {
     e.preventDefault();
     //const response =
@@ -70,7 +69,7 @@ export default function MyInfoComponent() {
     // const content = await response.json();
     // console.log(content);
     // setRedirect(true);
-    alert("Updated!");
+    document.getElementById("messagesent").style.display="block";
   };
   // if (redirect) {
   //   return <Navigate to="/home/slider" />;
@@ -103,6 +102,9 @@ export default function MyInfoComponent() {
             alignItems: "center",
           }}
         >
+          <Typography component="h4" id="messagesent" variant="h5">
+            Message Sent. Thank You!
+          </Typography>
           <Box component="form" noValidate onSubmit={submit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>

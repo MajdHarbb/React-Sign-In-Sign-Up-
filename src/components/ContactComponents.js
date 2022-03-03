@@ -58,6 +58,7 @@ export default function ContactComponent() {
     // const content = await response.json();
     // console.log(content);
     setRedirect(true);
+    document.getElementById("messagesent").style.display="block";
   };
 
   return (
@@ -75,6 +76,11 @@ export default function ContactComponent() {
           <Typography component="h1" variant="h5">
             Send Us A Message
           </Typography>
+
+          <Typography component="h4" id="messagesent" variant="h5">
+            Message Sent. Thank You!
+          </Typography>
+
           <Box component="form" noValidate onSubmit={submit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
