@@ -8,7 +8,7 @@ const SliderComponent = () => {
    
 
     return (
-        <Carousel>
+            <Carousel >
                 <div>
                     <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210208000010/1.png" />
                     <p className="legend">Legend 1</p>

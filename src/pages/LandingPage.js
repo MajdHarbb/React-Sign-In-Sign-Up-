@@ -44,8 +44,9 @@ const LandingPage = () => {
             <NavbarComponent/>
             
             <Outlet/>
-            {/* <SliderComponent/> */}
+              
         </div>
+        
     );
 };
 

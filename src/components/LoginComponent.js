@@ -41,7 +41,7 @@ export default function LoginComponent() {
         }
     
         if(redirect){
-            return <Navigate to="/home" />
+            return <Navigate to="/home/slider" />
         }
     return (
         <ThemeProvider theme={theme}>

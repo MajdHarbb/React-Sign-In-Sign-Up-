@@ -8,6 +8,7 @@ import AboutPage from './pages/AboutPage';
 import MyInfo from './pages/MyInfo';
 import ServicesPage from './pages/ServicesPage';
 import testPage from './pages/testPage';
+import SliderLanding from './pages/SliderLanding';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path='/' element={<LoginPage/>}/>
             <Route path='/signup' element={<SignupPage/>}/>
             <Route path='/home' element={<LandingPage/>}>
+                <Route path='slider' element={<SliderLanding/>}/> 
                 <Route path='contactus' element={<ContactusPage/>}/>
                 <Route path='about-us' element={<AboutPage/>}/>
                 <Route path='user-info' element={<MyInfo/>}/>

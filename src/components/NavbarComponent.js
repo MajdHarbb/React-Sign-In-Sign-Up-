@@ -59,7 +59,7 @@ const ResponsiveAppBar = () => {
 
     const handleCloseNavMenuHome = () => {
         setAnchorElNav(null);
-        let path = `/home`;
+        let path = `/home/slider`;
         navigate(path);
     };
 
