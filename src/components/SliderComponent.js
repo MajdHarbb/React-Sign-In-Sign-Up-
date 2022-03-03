@@ -9,15 +9,15 @@ const SliderComponent = () => {
             <Carousel className="slidercss">
                 <div>
                     <img src="http://images4.fanpop.com/image/photos/22300000/Random-Cars-autorev-22326979-1400-930.jpg" />
-                    <p className="legend">Legend 1</p>
+                    <p className="legend">Car 1</p>
                 </div>
                 <div>
                     <img src="https://www.generatormix.com/images/thumbs/random-cars.jpg" />
-                    <p className="legend">Legend 2</p>
+                    <p className="legend">Car 2</p>
                 </div>
                 <div>
-                    <img src="assets/3.jpeg" />
-                    <p className="legend">Legend 3</p>
+                    <img src="https://static.carthrottle.com/workspace/uploads/posts/2018/10/04c4ba50040d2f88fa56549c1498efbc.jpg" />
+                    <p className="legend">Car 3</p>
                 </div>
             </Carousel>
     );
