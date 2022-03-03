@@ -125,15 +125,9 @@ export default function MyInfoComponent() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Update Info
             </Button>
-            <Grid container>
-              <Grid item>
-                <Linkk to="/" variant="body2">
-                  Already have an account? Sign in
-                </Linkk>
-              </Grid>
-            </Grid>
+            
           </Box>
         </Box>
       </Container>
