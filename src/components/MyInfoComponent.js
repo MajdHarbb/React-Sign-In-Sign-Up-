@@ -17,78 +17,38 @@ import { Navigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function MyInfoComponent() {
+  const bearer_token = localStorage.getItem("access_token");
+  var bearer = "Bearer " + bearer_token;
 
-    const [myid,setMyId] = useState("");
-    const [first_name, setFirstNameO] = useState("");
-    const [last_name, setLastNameO] = useState("");
-    const [email, setEmailO] = useState("");
-    
-
-    const bearer_token = localStorage.getItem("access_token");
-    var url = "http://127.0.0.1:8000/api/auth/user-profile";
-    var bearer = 'Bearer ' + bearer_token;
-    async function getUserInfo ()  {
-        const response = await fetch(url, {
-            method: 'GET',
-    
-            headers: {
-                'Authorization': bearer,
-                'Content-Type': 'application/json'
-            }
-        })
-        
-        let content = await response.json();
-        setMyId(content.id);
-        setFirstNameO(content.first_name);
-        setLastNameO(content.last_name);
-        setEmailO(content.email);
-        
-        console.log(myid);
-
-        
-    }
-    
-    getUserInfo();
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  const [first_name_update, setFirstName] = useState("");
-  const [last_name_update, setLastName] = useState("");
-  const [email_update, setEmail] = useState("");
-  const [password_update, setPassword] = useState("");
-  const [password_confirmation_update, setPasswordRepeat] = useState("");
-
-  const [redirect, setRedirect] = useState(false);
   const submit = async (e) => {
     e.preventDefault();
     //const response =
-    let us_id = parseInt(myid);
+    let user_id = 6;
+    let first_name = "majd";
+    let last_name = "majd";
+    let email = "majd@majd.commmmmmmm";
+    let password = "majd123456";
+    let password_confirmation = "majd123456";
     await fetch("http://127.0.0.1:8000/api/auth/update", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { Authorization: bearer, "Content-Type": "application/json" },
       body: JSON.stringify({
-        us_id,
-        first_name_update,
-        last_name_update,
-        email_update,
-        password_update,
-        password_confirmation_update,
+        user_id,
+        first_name,
+        last_name,
+        email,
+        password,
+        password_confirmation,
       }),
     });
     // const content = await response.json();
     // console.log(content);
-    setRedirect(true);
+    // setRedirect(true);
+    alert("asd");
   };
-  if (redirect) {
-    return <Navigate to="/home/slider" />;
-  }
+  // if (redirect) {
+  //   return <Navigate to="/home/slider" />;
+  // }
 
   return (
     <ThemeProvider theme={theme}>
@@ -102,7 +62,6 @@ export default function MyInfoComponent() {
             alignItems: "center",
           }}
         >
-          
           <Box component="form" noValidate onSubmit={submit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -111,11 +70,9 @@ export default function MyInfoComponent() {
                   name="firstName"
                   required
                   fullWidth
-
                   id="firstName"
                   label="First Name"
                   autoFocus
-                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -126,19 +83,16 @@ export default function MyInfoComponent() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
-                  onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  
                   id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -150,7 +104,6 @@ export default function MyInfoComponent() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -162,7 +115,6 @@ export default function MyInfoComponent() {
                   type="password"
                   id="password_confirmation"
                   autoComplete="new-password"
-                  onChange={(e) => setPasswordRepeat(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -174,7 +126,6 @@ export default function MyInfoComponent() {
             >
               Update Info
             </Button>
-            
           </Box>
         </Box>
       </Container>
