@@ -22,21 +22,44 @@ export default function MyInfoComponent() {
 
 
 
-
-
+  let test;
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordRepeat] = useState("");
-  const [redirect, setRedirect] = useState(false);
+  const [user_idd, setuserid] = useState(0);
 
 
 
   const bearer_token = localStorage.getItem("access_token");
   var bearer = "Bearer " + bearer_token;
-    let user_id = 6;
+
+
+  var url = "http://127.0.0.1:8000/api/auth/user-profile";
+  async function getUserInfo ()  {
+    const response = await fetch(url, {
+        method: 'GET',
+
+        headers: {
+            'Authorization': bearer,
+            'Content-Type': 'application/json'
+        }
+    })
     
+    let content = await response.json();
+    console.log("asdugjasdjklkasdlkjhasgdjhbkj"+content.id);
+    
+    setuserid(content.id);
+    // setFirstName(content.first_name);
+    // setLastName(content.last_name);
+    
+}
+
+getUserInfo();
+    test = user_idd;
+    let user_id = test;
+    console.log("asdsadasdhjjhhhhhhhhhhhhhhhhhhhhhh"+test);
     const submit = async (e) => {
     e.preventDefault();
     //const response =
