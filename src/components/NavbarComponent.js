@@ -90,7 +90,22 @@ const ResponsiveAppBar = () => {
 
     const handleCloseNavMenuLogout = () => {
         setAnchorElNav(null);
-        let path = `/home/user-info`;
+        async function logout() {
+            const response = await fetch("http://127.0.0.1:8000/api/auth/logout", {
+                method: "POST",
+    
+                headers: {
+                    Authorization: bearer,
+                    "Content-Type": "application/json",
+                },
+            });
+    
+            let content = await response.json();
+            console.log(content);
+            
+        }
+        logout();
+        let path = `/`;
         navigate(path);
     };
     return (
