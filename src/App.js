@@ -7,7 +7,6 @@ import ContactusPage from './pages/ContactusPage';
 import AboutPage from './pages/AboutPage';
 import MyInfo from './pages/MyInfo';
 import ServicesPage from './pages/ServicesPage';
-import testPage from './pages/testPage';
 import SliderLanding from './pages/SliderLanding';
 
 function App() {

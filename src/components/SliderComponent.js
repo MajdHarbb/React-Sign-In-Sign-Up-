@@ -3,18 +3,16 @@ import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
-
 const SliderComponent = () => {
    
-
     return (
-            <Carousel >
+            <Carousel className="slidercss">
                 <div>
-                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210208000010/1.png" />
+                    <img src="http://images4.fanpop.com/image/photos/22300000/Random-Cars-autorev-22326979-1400-930.jpg" />
                     <p className="legend">Legend 1</p>
                 </div>
                 <div>
-                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210208000008/3.png" />
+                    <img src="https://www.generatormix.com/images/thumbs/random-cars.jpg" />
                     <p className="legend">Legend 2</p>
                 </div>
                 <div>
