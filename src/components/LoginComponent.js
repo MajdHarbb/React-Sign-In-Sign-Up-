@@ -37,9 +37,12 @@ export default function LoginComponent() {
 
             });
             const content = await response.json();
-            console.log(content.access_token);
-            localStorage.setItem("access_token", content.access_token);
-            setRedirect(true);
+            console.log(response.status);
+            if(response.status != 401) {
+                localStorage.setItem("access_token", content.access_token);
+                setRedirect(true);
+            }
+            
         } else{
             alert("Invalid Input");
 

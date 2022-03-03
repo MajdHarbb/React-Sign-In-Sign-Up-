@@ -23,6 +23,7 @@ export default function SignupComponent() {
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordRepeat] = useState("");
   const [redirect, setRedirect] = useState(false);
+  
   const submit = async (e) => {
     e.preventDefault();
     //const response =
