@@ -2,8 +2,17 @@ import React from 'react';
 import NavbarComponent from '../components/NavbarComponent';
 import {Outlet} from 'react-router-dom';
 import { useState } from 'react';
+import SliderComponent from '../components/SliderComponent';
 
 const LandingPage = () => {
+
+    // constructor(props){
+    //     super(props);
+    //     this.state={
+    //         name:"suraj"
+    //     }
+    // }
+
     const [first_name,setFirstName] = useState('');
     const [last_name,setLastName] = useState('');
     const [email,setEmail] = useState('');
@@ -20,17 +29,22 @@ const LandingPage = () => {
                 'Content-Type': 'application/json'
             }
         })
+        
         let content = await response.json();
         console.log(content);
         setFirstName(content.first_name);
         setLastName(content.last_name);
         
     }
+    
     getUserInfo();
+    
     return (
         <div>
             <NavbarComponent/>
+            <SliderComponent/>
             <Outlet/>
+            
         </div>
     );
 };
