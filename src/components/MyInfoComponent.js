@@ -17,24 +17,67 @@ import { Navigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function MyInfoComponent() {
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password_confirmation, setPasswordRepeat] = useState("");
+
+    const [myid,setMyId] = useState("");
+    const [first_name, setFirstNameO] = useState("");
+    const [last_name, setLastNameO] = useState("");
+    const [email, setEmailO] = useState("");
+    
+
+    const bearer_token = localStorage.getItem("access_token");
+    var url = "http://127.0.0.1:8000/api/auth/user-profile";
+    var bearer = 'Bearer ' + bearer_token;
+    async function getUserInfo ()  {
+        const response = await fetch(url, {
+            method: 'GET',
+    
+            headers: {
+                'Authorization': bearer,
+                'Content-Type': 'application/json'
+            }
+        })
+        
+        let content = await response.json();
+        console.log(content);
+        setMyId(content.id);
+        setFirstNameO(content.first_name);
+        setLastNameO(content.last_name);
+        setEmailO(content.email);
+
+        
+    }
+    
+    getUserInfo();
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  const [first_name_update, setFirstName] = useState("");
+  const [last_name_update, setLastName] = useState("");
+  const [email_update, setEmail] = useState("");
+  const [password_update, setPassword] = useState("");
+  const [password_confirmation_update, setPasswordRepeat] = useState("");
+
   const [redirect, setRedirect] = useState(false);
   const submit = async (e) => {
     e.preventDefault();
     //const response =
-    await fetch("http://127.0.0.1:8000/api/auth/register", {
+    await fetch("http://127.0.0.1:8000/api/auth/update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        first_name,
-        last_name,
-        email,
-        password,
-        password_confirmation,
+        myid,
+        first_name_update,
+        last_name_update,
+        email_update,
+        password_update,
+        password_confirmation_update,
       }),
     });
     // const content = await response.json();
@@ -42,7 +85,7 @@ export default function MyInfoComponent() {
     setRedirect(true);
   };
   if (redirect) {
-    return <Navigate to="/" />;
+    return <Navigate to="/home/slider" />;
   }
 
   return (
@@ -66,6 +109,8 @@ export default function MyInfoComponent() {
                   name="firstName"
                   required
                   fullWidth
+                  defaultValue={first_name}
+
                   id="firstName"
                   label="First Name"
                   autoFocus
@@ -78,6 +123,7 @@ export default function MyInfoComponent() {
                   fullWidth
                   id="lastName"
                   label="Last Name"
+                  defaultValue={last_name}
                   name="lastName"
                   autoComplete="family-name"
                   onChange={(e) => setLastName(e.target.value)}
@@ -88,6 +134,7 @@ export default function MyInfoComponent() {
                   required
                   fullWidth
                   id="email"
+                  defaultValue={email}
                   label="Email Address"
                   name="email"
                   autoComplete="email"
