@@ -86,6 +86,13 @@ const ResponsiveAppBar = () => {
         let path = `/home/services`;
         navigate(path);
     };
+
+
+    const handleCloseNavMenuLogout = () => {
+        setAnchorElNav(null);
+        let path = `/home/user-info`;
+        navigate(path);
+    };
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -198,7 +205,7 @@ const ResponsiveAppBar = () => {
                     <Box sx={{ flexGrow: 0 }}>
                         <Button
                             key="Logout"
-                            //onClick={handleCloseNavMenuMyInfo}
+                            onClick={handleCloseNavMenuLogout}
                             sx={{ my: 2, color: "white", display: "block" }}
                         >
                             Logout
