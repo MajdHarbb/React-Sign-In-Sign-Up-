@@ -9,41 +9,48 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Link as Linkk} from 'react-router-dom';
+import { Link as Linkk } from 'react-router-dom';
 import { useState } from 'react';
-import {Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 
 const theme = createTheme();
 
 export default function LoginComponent() {
+    var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    var passRegex = /^[a-zA-Z0-9]{6,}$/;
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [redirect, setRedirect] = useState(false);
 
-        const [email,setEmail] = useState('');
-        const [password,setPassword] = useState('');
-        const [redirect, setRedirect] = useState(false);
-    
-        const sumbit = async (e) => {
+    const sumbit = async (e) => {
+        if (email.match(emailRegex) && password.match(passRegex) ) {
             e.preventDefault();
             const response = await fetch('http://127.0.0.1:8000/api/auth/login', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    
+
                     email,
                     password,
                 })
-                
+
             });
             const content = await response.json();
             console.log(content.access_token);
             localStorage.setItem("access_token", content.access_token);
             setRedirect(true);
+        } else{
+            alert("eneter");
+
         }
-    
-        if(redirect){
-            return <Navigate to="/home/slider" />
-        }
-        
+
+    }
+
+    if (redirect) {
+        return <Navigate to="/home/slider" />
+    }
+
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
@@ -84,6 +91,16 @@ export default function LoginComponent() {
                             id="password"
                             autoComplete="current-password"
                             onChange={(e) => setPassword(e.target.value)}
+                        />
+
+                        <TextField className='alertBox'
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Invalid Input"
+                            type="password"
+                            autoComplete="current-password"
                         />
 
                         <Button
