@@ -105,6 +105,8 @@ const ResponsiveAppBar = () => {
             
         }
         logout();
+        localStorage.clear();
+
         let path = `/`;
         navigate(path);
     };
