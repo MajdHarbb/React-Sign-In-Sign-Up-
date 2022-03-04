@@ -17,6 +17,7 @@ const LandingPage = () => {
     //fetch user-profile API: returns id,name, email
     var url = "http://127.0.0.1:8000/api/auth/user-profile";
     var bearer = 'Bearer ' + bearer_token;
+    
     async function getUserInfo ()  {
         const response = await fetch(url, {
             method: 'GET',
@@ -28,13 +29,13 @@ const LandingPage = () => {
         })
         
         let content = await response.json();
-        console.log(content);
+        //set fetched first and last name values to variables
         setFirstName(content.first_name);
         setLastName(content.last_name);
         
     }
     //End fetch user-profile API
-    
+
     getUserInfo();
     
     return (
