@@ -7,8 +7,19 @@ You can find the back end repository here: https://github.com/MajdHarbb/Laravel-
 
 ## Project Demo
 
+### Sign In Page
+
+Type `npm run build` in your terminal to run the project and you will have this page: 
+
 ![alt text](Assets/SignIn.png)
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+If the user leaves an empty field this message wil be displayed: 
+
+![alt text](Assets/SignIn_invalid.png)
+
+If the user is not registered this message will be displayed: 
+
+![alt text](Assets/SignIn_nouser.png)
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
