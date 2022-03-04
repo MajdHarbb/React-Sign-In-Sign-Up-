@@ -1,23 +1,22 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link as Linkk } from "react-router-dom";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function MyInfoComponent() {
+
+
   let test;
+
+  //use states to get user inputs
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -25,10 +24,15 @@ export default function MyInfoComponent() {
   const [password_confirmation, setPasswordRepeat] = useState("");
   const [user_idd, setuserid] = useState(0);
 
+  //get local storage key value
   const bearer_token = localStorage.getItem("access_token");
   var bearer = "Bearer " + bearer_token;
 
+
   var url = "http://127.0.0.1:8000/api/auth/user-profile";
+
+  //fetch user info API: returns id,name,email
+
   async function getUserInfo() {
     const response = await fetch(url, {
       method: "GET",
@@ -40,19 +44,21 @@ export default function MyInfoComponent() {
     });
 
     let content = await response.json();
-    console.log("asdugjasdjklkasdlkjhasgdjhbkj" + content.id);
-
+    //set fetched user id
     setuserid(content.id);
-    // setFirstName(content.first_name);
-    // setLastName(content.last_name);
+    
   }
 
   getUserInfo();
+
+
   test = user_idd;
   let user_id = test;
+
+  //fetch update API: updates all info (all info must be updated else it will not work)
   const submit = async (e) => {
+
     e.preventDefault();
-    //const response =
 
     await fetch("http://127.0.0.1:8000/api/auth/update", {
       method: "POST",
@@ -66,30 +72,12 @@ export default function MyInfoComponent() {
         password_confirmation,
       }),
     });
-    // const content = await response.json();
-    // console.log(content);
-    // setRedirect(true);
+    
+    // On success display "Message Sent Successfully"
     document.getElementById("messagesent").style.display="block";
   };
-  // if (redirect) {
-  //   return <Navigate to="/home/slider" />;
-  // }
-  const myfun = () => {
-    fetch("http://127.0.0.1:8000/api/auth/update", {
-      method: "POST",
-      headers: { Authorization: bearer, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        user_id,
-        first_name,
-        last_name,
-        email,
-        password,
-        password_confirmation,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  };
+  
+  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
