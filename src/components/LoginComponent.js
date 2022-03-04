@@ -16,37 +16,51 @@ import { Navigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function LoginComponent() {
-  var emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  //email and password regex: email-> example@example.example, password->letters and numbers > 6 characters
+  var emailRegex =/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   var passRegex = /^[a-zA-Z0-9]{6,}$/;
+
+  //useStates to get user input
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
 
+  //On button click activate: 
   const sumbit = async (e) => {
+    //validate email and password
     if (email.match(emailRegex) && password.match(passRegex)) {
+
       e.preventDefault();
+      //fetch login API: checks if user exists in the database and returns a JWT token
       const response = await fetch("http://127.0.0.1:8000/api/auth/login", {
+
         method: "POST",
+
         headers: { "Content-Type": "application/json" },
+
         body: JSON.stringify({
+
           email,
           password,
         }),
       });
       const content = await response.json();
-      console.log(response.status);
+
+      //if user is found store token in the local storage
       if (response.status != 401) {
         localStorage.setItem("access_token", content.access_token);
         setRedirect(true);
       }else{
+        //display user not found message
         document.getElementById("nouser").style.display="block";
       }
     } else {
+      //display Invalid Input
       document.getElementById("invalidinput").style.display="block";
     }
   };
-
+  //redirect to user home page on success
   if (redirect) {
     return <Navigate to="/home/slider" />;
   }
