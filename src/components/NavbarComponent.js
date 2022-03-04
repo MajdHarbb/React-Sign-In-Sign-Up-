@@ -60,39 +60,40 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  //redirect to home
   const handleCloseNavMenuHome = () => {
     setAnchorElNav(null);
     let path = `/home/slider`;
     navigate(path);
   };
-
+  //redirect to contact us page
   const handleCloseNavMenuContactUs = () => {
     setAnchorElNav(null);
     let path = `/home/contactus`;
     navigate(path);
   };
-
+  //redirect to about us page
   const handleCloseNavMenuAboutUs = () => {
     setAnchorElNav(null);
     let path = `/home/about-us`;
     navigate(path);
   };
-
+  //redirect to user info page 
   const handleCloseNavMenuMyInfo = () => {
     setAnchorElNav(null);
     let path = `/home/user-info`;
     navigate(path);
   };
-
+  //redirect to services page
   const handleCloseNavMenuServices = () => {
     setAnchorElNav(null);
     let path = `/home/services`;
     navigate(path);
   };
-
+  //Logout function 
   const handleCloseNavMenuLogout = () => {
     setAnchorElNav(null);
+    //logout fetches logout API that clears the JWT token in server
     async function logout() {
       const response = await fetch("http://127.0.0.1:8000/api/auth/logout", {
         method: "POST",
@@ -107,8 +108,9 @@ const ResponsiveAppBar = () => {
       console.log(content);
     }
     logout();
+    //clear local storage
     localStorage.clear();
-
+    //redirect to main page (sign in page)
     let path = `/`;
     navigate(path);
   };
