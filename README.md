@@ -46,20 +46,18 @@ The home page section contains a navbar with links to navigate and a carousel th
 
 #### Contact Us 
 
-The home page section contains a navbar with links to navigate and a carousel that displays three pictures. 
+Contact us allows the user to send a message. 
 
-### Making a Progressive Web App
+![alt text](Assets/message.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Serives
 
-### Advanced Configuration
+Our Services 
+![alt text](Assets/services.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### User Info
 
-### Deployment
+The user update their info!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+[alt text](Assets/update.png)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

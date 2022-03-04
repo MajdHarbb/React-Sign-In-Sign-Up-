@@ -91,7 +91,8 @@ export default function MyInfoComponent() {
           }}
         >
           <Typography component="h4" id="messagesent" variant="h5">
-            Message Sent. Thank You!
+          Your Info Was Updated!
+          
           </Typography>
           <Box component="form" noValidate onSubmit={submit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
