@@ -3,7 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -17,23 +16,35 @@ import { Navigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function SignupComponent() {
+
+  //use State to update variables according to user input
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordRepeat] = useState("");
+
+  //redirect use state: initally false, if user registeration is successful --> true
   const [redirect, setRedirect] = useState(false);
-  var emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  //email and password regex: email-> example@example.example, password->letters and numbers > 6 characters
+  var emailRegex =/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   var passRegex = /^[a-zA-Z0-9]{6,}$/;
+
   const submit = async (e) => {
-    if(email.match(emailRegex) && password.match(passRegex) && first_name!="" 
-    && first_name!="" && password===password_confirmation){
+
+    //match input with regex and check for null input
+    if(email.match(emailRegex) && password.match(passRegex) && first_name!="" && first_name!="" && password===password_confirmation){
+      
       e.preventDefault();
-    //const response =
+    //if true fetch register API: insert new tuple into users db container user input information
+
     await fetch("http://127.0.0.1:8000/api/auth/register", {
+
       method: "POST",
+
       headers: { "Content-Type": "application/json" },
+      //append user input to body
       body: JSON.stringify({
         first_name,
         last_name,
@@ -42,14 +53,18 @@ export default function SignupComponent() {
         password_confirmation,
       }),
     });
-    // const content = await response.json();
-    // console.log(content);
+    
+    //redirect use state set to true
     setRedirect(true);
     }else{
+
+      //if user input is null or not in the form ex@ex.com & password 6 characters (letters and numbers) display invalid input message
       document.getElementById("invalidinput").style.display="block";
     }
     
   };
+
+  //redirect is true navigate to sign in page else stay at sign up page
   if (redirect) {
     return <Navigate to="/" />;
   }
