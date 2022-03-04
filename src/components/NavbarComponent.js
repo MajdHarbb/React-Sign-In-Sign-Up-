@@ -23,7 +23,7 @@ const ResponsiveAppBar = () => {
   async function getUserInfo() {
     const response = await fetch(url, {
       method: "GET",
-
+      
       headers: {
         Authorization: bearer,
         "Content-Type": "application/json",

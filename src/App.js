@@ -12,10 +12,13 @@ import SliderLanding from './pages/SliderLanding';
 function App() {
   return (
     <div className="App">
+      
       <BrowserRouter>
       <Routes>
             <Route path='/' element={<LoginPage/>}/>
             <Route path='/signup' element={<SignupPage/>}/>
+
+            {/* Nested Routes: when the user is logged in  */}
             <Route path='/home' element={<LandingPage/>}>
                 <Route path='slider' element={<SliderLanding/>}/> 
                 <Route path='contactus' element={<ContactusPage/>}/>

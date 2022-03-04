@@ -1,6 +1,6 @@
 import React from 'react';
 import ContactComponent from '../components/ContactComponents';
-
+/** Contact Us Page */
 const ContactusPage = () => {
     return (
         <div>
