@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Sign In Sign Up Project: My First React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full stack web project where the user can sign up, sign in with a generated JWT token, and send a message. 
+For the front end, React JS is used where as for the back end Laravel 8 is used. 
+You can find the back end repository here: https://github.com/MajdHarbb/Laravel-JWT.git 
 
 ## Available Scripts
 
