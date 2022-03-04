@@ -57,7 +57,7 @@ Our Services
 
 #### User Info
 
-The user update their info!
+The user update their info.
 
-[alt text](Assets/update.png)
+[!alt text](Assets/update.png)
 
